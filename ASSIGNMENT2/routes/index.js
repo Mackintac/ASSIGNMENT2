@@ -14,6 +14,10 @@ router.get('/register', function (req, res, next) {
   res.render('register', { title: 'Register' });
 });
 
+router.post('/register', function (req, res, next) {
+  User.register();
+});
+
 router.get('/about', function (req, res, next) {
   res.render('about', { title: 'About this app' });
 });
