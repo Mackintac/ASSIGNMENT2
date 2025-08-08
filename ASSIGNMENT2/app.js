@@ -6,9 +6,10 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
-
+const User = require('./models/user');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var tasksRouter = require('./routes/tasks');
 
 var app = express();
 
@@ -21,7 +22,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('MongoDB connected'))
+  .then(() => console.log('DB connected'))
   .catch((err) => console.log(err));
 
 app.use(logger('dev'));
@@ -30,11 +31,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(
+  session({
+    secret: '5tudytr4ck3r',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tasks', tasksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
