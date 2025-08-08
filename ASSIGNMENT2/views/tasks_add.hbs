@@ -1,0 +1,25 @@
+<h1>Add New Task</h1>
+<form action='/tasks/add' method='POST'>
+  <div class='mb-3'>
+    <label for='title' class='form-label'>Title</label>
+    <input type='text' name='title' id='title' class='form-control' required />
+  </div>
+  <div class='mb-3'>
+    <label for='description' class='form-label'>Description/Notes</label>
+    <textarea
+      name='description'
+      id='description'
+      class='form-control'
+    ></textarea>
+  </div>
+  <div class='mb-3'>
+    <label for='status' class='form-label'>Status</label>
+    <select name='status' id='status' class='form-select'>
+      <option value='planned'>Planned</option>
+      <option value='in progress'>In Progress</option>
+      <option value='completed'>Completed</option>
+    </select>
+  </div>
+  <button type='submit' class='btn btn-success'>Add Task</button>
+  <a href='/tasks' class='btn btn-secondary'>Cancel</a>
+</form>

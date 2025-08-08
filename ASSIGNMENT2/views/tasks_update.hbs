@@ -1,0 +1,21 @@
+<h1>Edit Task</h1>
+<form action="/tasks/edit/{{task._id}}" method="POST">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" name="title" id="title" class="form-control" value="{{task.title}}" required>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description/Notes</label>
+    <textarea name="description" id="description" class="form-control">{{task.description}}</textarea>
+  </div>
+  <div class="mb-3">
+    <label for="status" class="form-label">Status</label>
+    <select name="status" id="status" class="form-select">
+      <option value="planned" {{#if (eq task.status "planned")}}selected{{/if}}>Planned</option>
+      <option value="in progress" {{#if (eq task.status "in progress")}}selected{{/if}}>In Progress</option>
+      <option value="completed" {{#if (eq task.status "completed")}}selected{{/if}}>Completed</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Update Task</button>
+  <a href="/tasks" class="btn btn-secondary">Cancel</a>
+</form>

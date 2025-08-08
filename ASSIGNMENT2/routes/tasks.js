@@ -13,7 +13,7 @@ router.get('/', isAuthenticated, async (req, res) => {
 });
 
 router.get('/add', isAuthenticated, (req, res) => {
-  res.render('addTask');
+  res.render('tasks_add');
 });
 
 router.post('/add', isAuthenticated, async (req, res) => {
@@ -25,7 +25,7 @@ router.post('/add', isAuthenticated, async (req, res) => {
 router.get('/edit/:id', isAuthenticated, async (req, res) => {
   const task = await Task.findOne({ _id: req.params.id, user: req.user._id });
   if (!task) return res.redirect('/tasks');
-  res.render('editTask', { task });
+  res.render('tasks_update', { task });
 });
 router.post('/edit/:id', isAuthenticated, async (req, res) => {
   const { title, description, status } = req.body;

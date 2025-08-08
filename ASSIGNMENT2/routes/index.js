@@ -1,21 +1,48 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const User = require('../models/user');
+const passport = require('passport');
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Independent Study Tracker' });
 });
 
-router.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Login' });
+router.get('/login', (req, res, next) => {
+  let messages = req.session.messages || [];
+  req.session.messages = [];
+  res.render('login', { title: 'Login', messages: messages });
 });
 
-router.get('/register', function (req, res, next) {
-  res.render('register', { title: 'Register' });
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/tasks',
+    failureRedirect: '/login',
+    failureMessage: 'Invalid credentials',
+  })
+);
+
+router.get('/register', (req, res, next) => {
+  res.render('register', { title: 'Create a new account' });
 });
 
-router.post('/register', function (req, res, next) {
-  User.register();
+router.post('/register', (req, res, next) => {
+  User.register(
+    new User({
+      username: req.body.username,
+    }),
+    req.body.password,
+    (err, newUser) => {
+      if (err) {
+        console.log(err);
+        return res.redirect('/register');
+      } else {
+        req.login(newUser, (err) => {
+          res.redirect('/tasks');
+        });
+      }
+    }
+  );
 });
 
 router.get('/about', function (req, res, next) {
