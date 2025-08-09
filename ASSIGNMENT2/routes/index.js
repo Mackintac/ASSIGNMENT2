@@ -4,8 +4,9 @@ const User = require('../models/user');
 const passport = require('passport');
 
 function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/tasks);
+  if (req.isAuthenticated()) return res.redirect('/tasks'); 
+    next();
+  
 }
 
 
@@ -31,6 +32,8 @@ router.post(
 router.get('/register', isAuthenticated, (req, res, next) => {
   res.render('register', { title: 'Create a new account' });
 });
+
+router.get('/tasks')
 
 router.post('/register', (req, res, next) => {
   User.register(
