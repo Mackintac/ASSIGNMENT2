@@ -1,38 +1,56 @@
-{{! Login page code provided by Eduardo Jaime via pastebin - https://pastebin.com/N3MF5yFH }}
-<h1>
-  Login
-</h1>
+{{! Login page code provided by Professor Eduardo Jaime via pastebin - https://pastebin.com/N3MF5yFH }}
+<h1 class='text-center mb-4 text-light'>Login</h1>
 
 {{#if messages}}
-  <div class='alert alert-danger'>
+  <div class='alert alert-danger text-center'>
     Invalid credentials
   </div>
 {{else}}
-  <div class='alert alert-info'>
+  <div class='alert alert-info text-center w-25 mx-auto'>
     Please enter your credentials
   </div>
 {{/if}}
-<form method='post'>
-  <fieldset class='form-group'>
-    <label for='username' class='col-2 control-label'>
+
+<form
+  method='post'
+  class='mx-auto bg-dark p-4 rounded shadow'
+  style='max-width:400px;'
+>
+  <fieldset class='form-group mb-3'>
+    <label for='username' class='form-label text-light'>
       Username: *
     </label>
-    <input name='username' id='username' required />
+    <input
+      class='form-control bg-secondary text-light border-0'
+      name='username'
+      id='username'
+      required
+      type='email'
+      placeholder='email@email.com'
+    />
   </fieldset>
-  <fieldset class='form-group'>
-    <label for='password' class='col-2 control-label'>
+  <fieldset class='form-group mb-3'>
+    <label for='password' class='form-label text-light'>
       Password: *
     </label>
-    <input name='password' id='password' type='password' required />
+    <input
+      class='form-control bg-secondary text-light border-0'
+      name='password'
+      id='password'
+      type='password'
+      required
+      placeholder='Enter your password'
+    />
   </fieldset>
-  <fieldset class='form-group'>
-    <button class='btn btn-info offset-3'>
+  <fieldset class='form-group text-center'>
+    <button class='btn btn-primary w-100 mb-2'>
       Login
     </button>
-    <hr />
-    Need an account?
-    <a href='/register' title='Register'>
-      Register
-    </a>
+    <hr class='bg-light' />
+    <small class='text-light'>Need an account?
+      <a href='/register' title='Register' class='link-info'>
+        Register
+      </a>
+    </small>
   </fieldset>
 </form>

@@ -1,50 +1,60 @@
 {{! Register page code provided by Professor Eduardo Jaime via pastebin - https://pastebin.com/N3MF5yFH }}
-<h1>Register Now!</h1>
-<form method='post'>
-  <fieldset class='form-group'>
-    <label for='username' class='col-2 control-label'>
+<h1 class='text-center mb-4 text-light'>Register Now!</h1>
+<form
+  method='post'
+  class='mx-auto bg-dark p-4 rounded shadow'
+  style='max-width:400px;'
+>
+  <fieldset class='form-group mb-3'>
+    <label for='username' class='form-label text-light'>
       Username: *
     </label>
     <input
       name='username'
+      class='form-control bg-secondary text-light border-0'
       id='username'
       required
       type='email'
       placeholder='email@email.com'
     />
   </fieldset>
-  <fieldset class='form-group'>
-    <label for='password' class='col-2 control-label'>
+  <fieldset class='form-group mb-3'>
+    <label for='password' class='form-label text-light'>
       Password: *
     </label>
     <input
       name='password'
+      class='form-control bg-secondary text-light border-0'
       id='password'
       type='password'
       required
       pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
+      placeholder='At least 8 chars, 1 uppercase, 1 number'
     />
   </fieldset>
-  <fieldset class='form-group'>
-    <label for='confirm' class='col-2 control-label'>
+  <fieldset class='form-group mb-3'>
+    <label for='confirm' class='form-label text-light'>
       Confirm: *
     </label>
     <input
+      class='form-control bg-secondary text-light border-0'
       name='confirm'
       id='confirm'
       type='password'
       required
       pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
+      placeholder='Repeat password'
     />
   </fieldset>
-  <fieldset class='form-group'>
-    <button class='btn btn-info offset-3'>
+  <fieldset class='form-group text-center'>
+    <button class='btn btn-primary w-100 mb-2'>
       Register
     </button>
-    <hr />
-    Already have an account?
-    <a href='/login' title='Login'>
-      Login
-    </a>
+    <hr class='bg-light' />
+    <small class='text-light'>Already have an account?
+      <a href='/login' title='Login' class='link-info'>
+        Login
+      </a>
+    </small>
   </fieldset>
 </form>
