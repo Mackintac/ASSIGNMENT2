@@ -52,14 +52,15 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/tasks', tasksRouter);
-
 app.use(function (req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();
   next();
 });
+
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/tasks', tasksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
